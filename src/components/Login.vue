@@ -19,7 +19,8 @@
           <b-form-input
             class="m-3 col-11"
             id="input-2"
-            v-model="form.name"
+            type="password"
+            v-model="form.password"
             required
             placeholder="Password"
           ></b-form-input>
@@ -38,21 +39,23 @@
 </template>
 
 <script>
+import Api from "@/api";
 export default {
   name: "signup",
   data() {
     return {
       form: {
         email: "",
-        name: "",
-        food: null,
+        password: "",
       },
     };
   },
   methods: {
-    onSubmit(evt) {
+    async onSubmit(evt) {
       evt.preventDefault();
       alert(JSON.stringify(this.form));
+      const data = await Api.methods.signIn(this.form);
+      console.log(data);
     },
   },
 };
