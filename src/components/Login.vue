@@ -6,6 +6,11 @@
           Login
         </div>
         <hr />
+        <div>
+          <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
+            {{ errorMessage }}
+          </b-alert>
+        </div>
         <b-form @submit="onSubmit">
           <b-form-input
             class="m-3 col-11"
@@ -48,14 +53,26 @@ export default {
         email: "",
         password: "",
       },
+      showDismissibleAlert: false,
+      errorMessage: "",
     };
   },
   methods: {
     async onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
-      const data = await Api.methods.signIn(this.form);
-      console.log(data);
+      try {
+        const response = await Api.methods.login(this.form);
+        console.log(response);
+        if (response.status === "failed") {
+          this.showDismissibleAlert = true;
+          this.errorMessage = response.error.response.data.message;
+        } else {
+          localStorage.setItem("accessToken", response.data.accessToken);
+          this.$router.push({ path: "/about" });
+        }
+      } catch (error) {
+        console.log(error, error.data);
+      }
     },
   },
 };
