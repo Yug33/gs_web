@@ -77,10 +77,8 @@ export default {
   methods: {
     async onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
       try {
         const response = await Api.methods.signup(this.form);
-        console.log(response);
         if (response.status === "failed") {
           this.showDismissibleAlert = true;
           this.errorMessage = response.error.response.data.message;
