@@ -35,5 +35,12 @@ export default {
         status: "failed",
       }));
     },
+    submitProfile(formData) {
+      const url = "/addCandidates";
+      return api.post(url, formData).catch((e) => ({
+        error: e,
+        status: "failed",
+      }));
+    },
   },
 };

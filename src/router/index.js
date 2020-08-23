@@ -32,6 +32,11 @@ const routes = [
     component: Verify,
     props: true,
   },
+  {
+    path: "/submit-profile",
+    name: "SubmitProfile",
+    component: () => import("../views/SubmitProfile.vue"),
+  },
 ];
 
 const router = new VueRouter({
