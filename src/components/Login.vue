@@ -73,7 +73,17 @@ export default {
       } catch (error) {
         console.log(error, error.data);
       }
+      this.checkVerify();
     },
+    checkVerify() {
+      if (this.$route.query.isVerify) {
+        this.showDismissibleAlert = true;
+        this.errorMessage = "Please verify your mail";
+      }
+    },
+  },
+  mounted() {
+    this.checkVerify();
   },
 };
 </script>

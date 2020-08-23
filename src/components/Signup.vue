@@ -40,6 +40,7 @@
           <b-form-input
             class="m-3 col-11"
             id="input-2"
+            type="password"
             v-model="form.password"
             required
             placeholder="Password"
@@ -83,7 +84,12 @@ export default {
           this.showDismissibleAlert = true;
           this.errorMessage = response.error.response.data.message;
         } else {
-          this.$router.push({ path: "/login" });
+          this.$router.push({
+            path: "/login",
+            query: {
+              isVerify: true,
+            },
+          });
         }
       } catch (error) {
         console.log(error, error.data);

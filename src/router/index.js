@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
-
+import Verify from "../components/VerifyMail.vue";
 Vue.use(VueRouter);
 
 const routes = [
@@ -15,6 +15,7 @@ const routes = [
     path: "/login",
     name: "Login",
     component: Login,
+    props: true,
   },
   {
     path: "/about",
@@ -25,9 +26,16 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
+  {
+    path: "/verify",
+    name: "Verify",
+    component: Verify,
+    props: true,
+  },
 ];
 
 const router = new VueRouter({
+  mode: "history",
   routes,
 });
 

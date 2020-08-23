@@ -22,9 +22,15 @@ export default {
       }));
     },
     signup(userCredentials) {
-      console.log(api.defaults);
       const url = "/signup";
       return api.post(url, userCredentials).catch((e) => ({
+        error: e,
+        status: "failed",
+      }));
+    },
+    verifyEmail(token) {
+      const url = "/verifyMail";
+      return api.post(url, { accessToken: token }).catch((e) => ({
         error: e,
         status: "failed",
       }));
