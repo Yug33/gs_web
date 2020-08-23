@@ -1,8 +1,8 @@
 <template>
-  <div class="d-flex justify-content-center align-items-center">
+  <div class="row vertical-height justify-content-center align-items-center">
     <div class="col-sm-12 col-md-6 col-lg-5 shadow-lg p-5">
       <div class="d-flex flex-column">
-        <div class="text-center display-4 font-weight-bolder">
+        <div class="text-center display-4 font-weight-bolder ">
           Sign up
         </div>
         <hr />

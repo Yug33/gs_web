@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-fluid">
     <SubmitProfile />
   </div>
 </template>
