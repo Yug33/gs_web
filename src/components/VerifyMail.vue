@@ -3,7 +3,7 @@
     <b-card title="Email Verification" class="col-6">
       <b-card-text>{{ verificationMessage }} </b-card-text>
       <b-button
-        v-if="!isEmailVerified"
+        v-if="isEmailVerified"
         variant="primary"
         @click="$router.push({ path: '/login' })"
       >
