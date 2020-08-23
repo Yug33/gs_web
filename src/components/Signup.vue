@@ -6,11 +6,16 @@
           Sign up
         </div>
         <hr />
+        <div>
+          <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
+            {{ errorMessage }}
+          </b-alert>
+        </div>
         <b-form @submit="onSubmit">
           <b-form-input
             class="m-3 col-11"
             id="input-1"
-            v-model="form.email"
+            v-model="form.first_name"
             type="text"
             required
             placeholder="First Name"
@@ -18,7 +23,7 @@
           <b-form-input
             class="m-3 col-11"
             id="input-1"
-            v-model="form.email"
+            v-model="form.last_name"
             type="text"
             required
             placeholder="Last Name"
@@ -35,7 +40,7 @@
           <b-form-input
             class="m-3 col-11"
             id="input-2"
-            v-model="form.name"
+            v-model="form.password"
             required
             placeholder="Password"
           ></b-form-input>
@@ -54,21 +59,37 @@
 </template>
 
 <script>
+import Api from "@/api";
 export default {
   name: "Signup",
   data() {
     return {
+      showDismissibleAlert: false,
+      errorMessage: "",
       form: {
+        first_name: "",
+        last_name: "",
         email: "",
-        name: "",
-        food: null,
+        password: "",
       },
     };
   },
   methods: {
-    onSubmit(evt) {
+    async onSubmit(evt) {
       evt.preventDefault();
       alert(JSON.stringify(this.form));
+      try {
+        const response = await Api.methods.signup(this.form);
+        console.log(response);
+        if (response.status === "failed") {
+          this.showDismissibleAlert = true;
+          this.errorMessage = response.error.response.data.message;
+        } else {
+          this.$router.push({ path: "/login" });
+        }
+      } catch (error) {
+        console.log(error, error.data);
+      }
     },
   },
 };
