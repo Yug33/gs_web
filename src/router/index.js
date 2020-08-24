@@ -12,6 +12,7 @@ const routes = [
     path: "/",
     name: "Candidates",
     component: Candidates,
+    beforeEnter: requireAuth,
   },
   {
     path: "/signup",

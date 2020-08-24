@@ -47,12 +47,12 @@
             </div>
             <div class="media">
               <label>
-                <a :href="candidate.cover_letter">Click here to download</a>
+                <a :href="candidate.cover_letter" target="_blank">Click here to download</a>
               </label>
             </div>
             <div class="media">
               <label>
-                <a :href="candidate.resume">Click here to download</a>
+                <a :href="candidate.resume" target="_blank">Click here to download</a>
               </label>
             </div>
             <div class="media">

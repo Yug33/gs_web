@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar toggleable="lg" type="dark" variant="primary">
-      <b-navbar-brand href="#">Rivio</b-navbar-brand>
+      <b-navbar-brand @click="$router.push({path:'/'})" class="pointer">Rivio</b-navbar-brand>
 
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 

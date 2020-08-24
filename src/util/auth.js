@@ -9,7 +9,7 @@ const requireAuth = (to, from, next) => {
     next();
   } else {
     next({
-      path: "/login",
+      path: "/submit-profile",
     });
   }
 };
