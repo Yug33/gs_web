@@ -5,8 +5,6 @@ function isLoggedIn() {
   return false;
 }
 const requireAuth = (to, from, next) => {
-  console.log("in requireAuth", to, isLoggedIn());
-
   if (isLoggedIn()) {
     next();
   } else {
@@ -16,4 +14,11 @@ const requireAuth = (to, from, next) => {
   }
 };
 
-export { isLoggedIn, requireAuth };
+const noLoginPage = (to, from, next) => {
+  if (isLoggedIn()) {
+    next({ path: from.path });
+  } else {
+    next();
+  }
+};
+export { isLoggedIn, requireAuth, noLoginPage };

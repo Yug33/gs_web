@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import Verify from "../components/VerifyMail.vue";
-import { requireAuth } from "@/util/auth.js";
+import { requireAuth, noLoginPage } from "@/util/auth.js";
 Vue.use(VueRouter);
 
 const routes = [
@@ -17,6 +17,7 @@ const routes = [
     name: "Login",
     component: Login,
     props: true,
+    beforeEnter: noLoginPage,
   },
   {
     path: "/about",
