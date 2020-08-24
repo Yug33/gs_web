@@ -2,11 +2,17 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
+import Candidates from "../views/Candidates.vue";
 import Verify from "../components/VerifyMail.vue";
 import { requireAuth, noLoginPage } from "@/util/auth.js";
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: "/",
+    name: "Candidates",
+    component: Candidates,
+  },
   {
     path: "/signup",
     name: "Signup",
