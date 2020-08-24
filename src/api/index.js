@@ -28,6 +28,19 @@ export default {
         status: "failed",
       }));
     },
+    getCandidates(limit, offset) {
+      const url = "/getCandidates";
+      return api.get(url, {
+        params: {
+          limit: limit,
+          offset: offset,
+        },
+      });
+    },
+    getCandidatesCount() {
+      const url = "/getCandidatesCount";
+      return api.get(url);
+    },
     verifyEmail(token) {
       const url = "/verifyMail";
       return api.post(url, { accessToken: token }).catch((e) => ({
