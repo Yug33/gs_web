@@ -8,27 +8,15 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
-            <b-form-input
-              size="sm"
-              class="mr-sm-2"
-              placeholder="Search"
-            ></b-form-input>
-            <b-button
-              size="sm"
-              class="my-2 my-sm-0"
-              type="submit"
-              variant="warning"
-              >Search</b-button
-            >
+            <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
+            <b-button size="sm" class="my-2 my-sm-0" type="submit" variant="warning">Search</b-button>
           </b-nav-form>
 
           <b-navbar-nav>
             <b-nav-item
               v-if="!isLoggedIn"
-              @click="isLoggedIn ? logout() : login"
-            >
-              {{ isLoggedIn ? "Logout" : "Login" }}</b-nav-item
-            >
+              @click="getLoginState ? logout() : login()"
+            >{{ getLoginState ? "Logout" : "Login" }}</b-nav-item>
             <b-nav-item v-else @click="logout">Logout</b-nav-item>
           </b-navbar-nav>
         </b-navbar-nav>
@@ -41,27 +29,29 @@ export default {
   name: "navbar",
   data() {
     return {
-      isLoggedIn: !!localStorage.getItem("accessToken"),
+      isLoggedIn: false
     };
   },
   methods: {
     async logout() {
       localStorage.clear();
-      this.isLoggedIn = false;
+      this.$store.commit("logout");
       this.$router.push({ path: "/login" });
     },
     async login() {
-      this.isLoggedIn = true;
       this.$router.push({ path: "/login" });
-    },
+    }
   },
-  watch: {
-    isLoggedIn: function(newValue) {
-      console.log(newValue);
-      if (newValue !== this.isLoggedIn) {
-        this.isLoggedIn = newValue;
-      }
-    },
+  mounted() {
+    if (localStorage.accessToken) {
+      this.$store.commit("login");
+    }
   },
+  computed: {
+    getLoginState() {
+      console.log(this.$store.state.isLoggedIn);
+      return this.$store.state.isLoggedIn;
+    }
+  }
 };
 </script>
