@@ -37,6 +37,7 @@
 
 <script>
 import Api from "@/api";
+/* eslint-disable no-debugger */
 export default {
   name: "signup",
   data() {
@@ -51,19 +52,22 @@ export default {
   },
   methods: {
     async onSubmit(evt) {
+      debugger;
       evt.preventDefault();
       try {
         const response = await Api.methods.login(this.form);
         console.log(response);
-        if (response.status === "failed") {
+        debugger;
+        if (response.statusText === "Unauthorized") {
           this.showDismissibleAlert = true;
-          this.errorMessage = response.error.response.data.message;
+          this.errorMessage = response.data.message;
         } else {
           localStorage.setItem("accessToken", response.data.accessToken);
           this.$store.commit("login");
           this.$router.push({ path: "/" });
         }
       } catch (error) {
+        debugger;
         console.log(error, error.data);
       }
       this.checkVerify();
