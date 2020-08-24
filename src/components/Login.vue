@@ -61,7 +61,7 @@ export default {
         } else {
           localStorage.setItem("accessToken", response.data.accessToken);
           this.$store.commit("login");
-          this.$router.push({ path: "/about" });
+          this.$router.push({ path: "/" });
         }
       } catch (error) {
         console.log(error, error.data);

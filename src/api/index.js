@@ -37,6 +37,14 @@ export default {
         },
       });
     },
+    getCandidatesBySearch(query) {
+      const url = "/getCandidateByVector";
+      return api.get(url, {
+        params: {
+          query: query,
+        },
+      });
+    },
     getCandidatesCount() {
       const url = "/getCandidatesCount";
       return api.get(url);

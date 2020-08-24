@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isLoggedIn: false,
+    search: "",
   },
   mutations: {
     login(state) {
@@ -14,7 +15,13 @@ export default new Vuex.Store({
     logout(state) {
       state.isLoggedIn = false;
     },
+    search(state, input) {
+      state.search = input;
+    },
   },
   actions: {},
   modules: {},
+  getters: {
+    getSearchInput: (state) => () => state.search,
+  },
 });

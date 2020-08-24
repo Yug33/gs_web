@@ -36,14 +36,27 @@ export default {
       const response = await Api.methods.getCandidatesCount();
       const totalCount = Number(response.data.count);
       this.rows = Math.round(totalCount / 9);
+    },
+    async getCandidatesBySearch(searchInput) {
+      if (searchInput) {
+        const response = await Api.methods.getCandidatesBySearch(searchInput);
+        this.candidates = response.data;
+      } else {
+        this.getCandidates();
+      }
     }
   },
   components: {
     UserCard
   },
   mounted() {
+    this.$store.watch(this.$store.getters.getSearchInput, searchInput => {
+      this.getCandidatesBySearch(searchInput);
+    });
+
     this.getCandidates();
     this.getCandidatesCount();
-  }
+  },
+  watch: {}
 };
 </script>

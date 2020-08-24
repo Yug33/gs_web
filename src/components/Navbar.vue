@@ -7,8 +7,8 @@
 
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-          <b-nav-form>
-            <b-form-input size="sm" class="mr-sm-2" placeholder="Search"></b-form-input>
+          <b-nav-form v-if="getLoginState">
+            <b-form-input size="sm" class="mr-sm-2" v-model="search" placeholder="Search"></b-form-input>
             <b-button size="sm" class="my-2 my-sm-0" type="submit" variant="warning">Search</b-button>
           </b-nav-form>
 
@@ -29,7 +29,8 @@ export default {
   name: "navbar",
   data() {
     return {
-      isLoggedIn: false
+      isLoggedIn: false,
+      search: ""
     };
   },
   methods: {
@@ -51,6 +52,11 @@ export default {
     getLoginState() {
       console.log(this.$store.state.isLoggedIn);
       return this.$store.state.isLoggedIn;
+    }
+  },
+  watch: {
+    search: function(input) {
+      this.$store.commit("search", input);
     }
   }
 };
