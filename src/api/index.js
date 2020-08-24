@@ -9,6 +9,18 @@ const api = axios.create({
     },
   },
 });
+api.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response.status === 401 || error.response.status === 403) {
+      localStorage.removeItem("accessToken");
+      window.location.href = "/login";
+    }
+    return error.response;
+  }
+);
 
 export default {
   name: "Api",
@@ -35,6 +47,9 @@ export default {
           limit: limit,
           offset: offset,
         },
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+        },
       });
     },
     getCandidatesBySearch(query) {
@@ -43,11 +58,18 @@ export default {
         params: {
           query: query,
         },
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+        },
       });
     },
     getCandidatesCount() {
       const url = "/getCandidatesCount";
-      return api.get(url);
+      return api.get(url, {
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+        },
+      });
     },
     verifyEmail(token) {
       const url = "/verifyMail";
