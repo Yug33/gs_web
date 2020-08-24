@@ -23,14 +23,45 @@
           </b-nav-form>
 
           <b-navbar-nav>
-            <b-nav-item @click="$router.push({ path: '/login' })"
-              >Login</b-nav-item
+            <b-nav-item
+              v-if="!isLoggedIn"
+              @click="isLoggedIn ? logout() : login"
             >
+              {{ isLoggedIn ? "Logout" : "Login" }}</b-nav-item
+            >
+            <b-nav-item v-else @click="logout">Logout</b-nav-item>
           </b-navbar-nav>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
   </div>
 </template>
-
-<script></script>
+<script>
+export default {
+  name: "navbar",
+  data() {
+    return {
+      isLoggedIn: !!localStorage.getItem("accessToken"),
+    };
+  },
+  methods: {
+    async logout() {
+      localStorage.clear();
+      this.isLoggedIn = false;
+      this.$router.push({ path: "/login" });
+    },
+    async login() {
+      this.isLoggedIn = true;
+      this.$router.push({ path: "/login" });
+    },
+  },
+  watch: {
+    isLoggedIn: function(newValue) {
+      console.log(newValue);
+      if (newValue !== this.isLoggedIn) {
+        this.isLoggedIn = newValue;
+      }
+    },
+  },
+};
+</script>
