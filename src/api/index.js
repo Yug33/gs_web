@@ -78,6 +78,23 @@ export default {
         status: "failed",
       }));
     },
+    addRating(userRatingData) {
+      const url = "/addRatings";
+      return api
+        .post(
+          url,
+          { userRatingData: userRatingData },
+          {
+            headers: {
+              Authorization: localStorage.getItem("accessToken"),
+            },
+          }
+        )
+        .catch((e) => ({
+          error: e,
+          status: "failed",
+        }));
+    },
     submitProfile(formData) {
       const url = "/addCandidates";
       return api.post(url, formData).catch((e) => ({

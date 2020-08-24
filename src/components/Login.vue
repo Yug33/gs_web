@@ -63,6 +63,7 @@ export default {
           this.errorMessage = response.data.message;
         } else {
           localStorage.setItem("accessToken", response.data.accessToken);
+          localStorage.setItem("userId", response.data.userId);
           this.$store.commit("login");
           this.$router.push({ path: "/" });
         }

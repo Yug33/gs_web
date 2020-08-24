@@ -6,7 +6,7 @@
       variant="primary"
     >More details</b-button>
     <!-- MODAL -->
-    <b-modal :id="candidate.id" centered title="Candidate" scrollable no-stacking>
+    <b-modal :id="candidate.id" centered title="Candidate" scrollable no-stacking @ok="handleOk">
       <div class="m-5">
         <div class="row about-list">
           <div class="col-6">
@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import Api from "@/api";
 export default {
   props: {
     candidate: {
@@ -79,8 +80,14 @@ export default {
     };
   },
   methods: {
-    handleOk() {
-      console.log("clicked okay");
+    async handleOk() {
+      const userRatingData = {
+        candidate_id: this.candidate.id,
+        reviewer_id: localStorage.getItem("userId"),
+        ratings: this.rating
+      };
+      const response = await Api.methods.addRating(userRatingData);
+      console.log(response, userRatingData);
     }
   },
   computed: {
