@@ -1,12 +1,15 @@
 <template>
   <b-card header="Candidate" header-tag="header" :title="getFullName">
     <b-card-text>{{candidate.email}}</b-card-text>
-    <b-button v-b-modal.modal-center variant="primary">More details</b-button>
+    <b-button
+      @click="$root.$emit('bv::show::modal', candidate.id, $event.target)"
+      variant="primary"
+    >More details</b-button>
     <!-- MODAL -->
-    <b-modal id="modal-center" centered title="Candidate" scrollable @ok="handleOk">
+    <b-modal :id="candidate.id" centered title="Candidate" scrollable no-stacking>
       <div class="m-5">
         <div class="row about-list">
-          <div class="col-md-6">
+          <div class="col-6">
             <div class="media">
               <label>Name</label>
             </div>
@@ -20,16 +23,16 @@
               <label>like working ?</label>
             </div>
             <div class="media">
-              <label>Resume</label>
+              <label>Cover letter</label>
             </div>
             <div class="media">
-              <label>Cover letter</label>
+              <label>Resume</label>
             </div>
             <div class="media">
               <p>Please rate</p>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-6">
             <div class="media">
               <label>{{getFullName}}</label>
             </div>
@@ -44,12 +47,12 @@
             </div>
             <div class="media">
               <label>
-                <a href="#">Click here to download</a>
+                <a :href="candidate.cover_letter">Click here to download</a>
               </label>
             </div>
             <div class="media">
               <label>
-                <a href="#">Click here to download</a>
+                <a :href="candidate.resume">Click here to download</a>
               </label>
             </div>
             <div class="media">

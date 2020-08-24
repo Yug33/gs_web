@@ -4,3 +4,7 @@
 .font-size-large {
     font-size: 2em;
 }
+.bottom-stick {
+    position: fixed;
+    bottom: 0;
+}
