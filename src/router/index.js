@@ -31,6 +31,10 @@ const routes = [
     beforeEnter: noLoginPage,
   },
   {
+    path: "*",
+    redirect: "home/all",
+  },
+  {
     path: "/about",
     name: "About",
     // route level code-splitting
