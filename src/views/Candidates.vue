@@ -1,5 +1,17 @@
 <template>
   <div class="container-fluid mt-3">
+    <div>
+      <b-nav tabs class="mb-4">
+        <b-nav-item to="/home/all" exact exact-active-class="active" @click="watchUrl">All</b-nav-item>
+        <b-nav-item to="/home/my" exact exact-active-class="active" @click="watchUrl">My ratings</b-nav-item>
+        <b-nav-item
+          to="/home/fiveStar"
+          exact
+          exact-active-class="active"
+          @click="watchUrl"
+        >Five star profiles</b-nav-item>
+      </b-nav>
+    </div>
     <b-card-group columns class="mb-4">
       <div v-for="candidate in candidates" :key="candidate.id">
         <UserCard :candidate="candidate" />
@@ -30,6 +42,13 @@ export default {
       const limit = 9;
       const offset = (this.currentPage - 1) * limit;
       const response = await Api.methods.getCandidates(limit, offset);
+
+      this.candidates = response.data;
+    },
+    async getMyRatedCandidates() {
+      const response = await Api.methods.getMyRatedCandidates(
+        localStorage.getItem("userId")
+      );
       this.candidates = response.data;
     },
     async getCandidatesCount() {
@@ -44,6 +63,21 @@ export default {
       } else {
         this.getCandidates();
       }
+    },
+    async watchUrl() {
+      console.log(this.$route.params.type);
+      switch (this.$route.params.type) {
+        case "all":
+          this.getCandidates();
+          this.getCandidatesCount();
+          break;
+        case "my":
+          this.getMyRatedCandidates();
+          break;
+
+        default:
+          break;
+      }
     }
   },
   components: {
@@ -53,9 +87,7 @@ export default {
     this.$store.watch(this.$store.getters.getSearchInput, searchInput => {
       this.getCandidatesBySearch(searchInput);
     });
-
-    this.getCandidates();
-    this.getCandidatesCount();
+    this.watchUrl();
   },
   watch: {}
 };

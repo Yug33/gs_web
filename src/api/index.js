@@ -63,6 +63,17 @@ export default {
         },
       });
     },
+    getMyRatedCandidates(reviewerId) {
+      const url = "/getMyRatedCandidates";
+      return api.get(url, {
+        params: {
+          reviewerId: reviewerId,
+        },
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+        },
+      });
+    },
     getCandidatesCount() {
       const url = "/getCandidatesCount";
       return api.get(url, {

@@ -9,7 +9,8 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    alias: "/",
+    path: "/home/:type",
     name: "Candidates",
     component: Candidates,
     beforeEnter: requireAuth,
