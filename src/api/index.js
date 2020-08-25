@@ -5,15 +5,15 @@ const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     common: {
-      "Access-Control-Allow-Origin": "*",
-    },
-  },
+      "Access-Control-Allow-Origin": "*"
+    }
+  }
 });
 api.interceptors.response.use(
-  (response) => {
+  response => {
     return response;
   },
-  (error) => {
+  error => {
     if (error.response.status === 403) {
       localStorage.removeItem("accessToken");
       window.location.href = "/login";
@@ -28,16 +28,16 @@ export default {
     login(userCredentials) {
       console.log(api.defaults);
       const url = "/login";
-      return api.post(url, userCredentials).catch((e) => ({
+      return api.post(url, userCredentials).catch(e => ({
         error: e,
-        status: "failed",
+        status: "failed"
       }));
     },
     signup(userCredentials) {
       const url = "/signup";
-      return api.post(url, userCredentials).catch((e) => ({
+      return api.post(url, userCredentials).catch(e => ({
         error: e,
-        status: "failed",
+        status: "failed"
       }));
     },
     getCandidates(limit, offset) {
@@ -45,56 +45,56 @@ export default {
       return api.get(url, {
         params: {
           limit: limit,
-          offset: offset,
+          offset: offset
         },
         headers: {
-          Authorization: localStorage.getItem("accessToken"),
-        },
+          Authorization: localStorage.getItem("accessToken")
+        }
       });
     },
     getCandidatesBySearch(query) {
       const url = "/getCandidateByVector";
       return api.get(url, {
         params: {
-          query: query,
+          query: query
         },
         headers: {
-          Authorization: localStorage.getItem("accessToken"),
-        },
+          Authorization: localStorage.getItem("accessToken")
+        }
       });
     },
     getMyRatedCandidates(reviewerId) {
       const url = "/getMyRatedCandidates";
       return api.get(url, {
         params: {
-          reviewerId: reviewerId,
+          reviewerId: reviewerId
         },
         headers: {
-          Authorization: localStorage.getItem("accessToken"),
-        },
+          Authorization: localStorage.getItem("accessToken")
+        }
       });
     },
     getCandidatesCount() {
       const url = "/getCandidatesCount";
       return api.get(url, {
         headers: {
-          Authorization: localStorage.getItem("accessToken"),
-        },
+          Authorization: localStorage.getItem("accessToken")
+        }
       });
     },
     getFiveStarCandidates() {
       const url = "/getFiveStarCandidates";
       return api.get(url, {
         headers: {
-          Authorization: localStorage.getItem("accessToken"),
-        },
+          Authorization: localStorage.getItem("accessToken")
+        }
       });
     },
     verifyEmail(token) {
       const url = "/verifyMail";
-      return api.post(url, { accessToken: token }).catch((e) => ({
+      return api.post(url, { accessToken: token }).catch(e => ({
         error: e,
-        status: "failed",
+        status: "failed"
       }));
     },
     addRating(userRatingData) {
@@ -105,21 +105,21 @@ export default {
           { userRatingData: userRatingData },
           {
             headers: {
-              Authorization: localStorage.getItem("accessToken"),
-            },
+              Authorization: localStorage.getItem("accessToken")
+            }
           }
         )
-        .catch((e) => ({
+        .catch(e => ({
           error: e,
-          status: "failed",
+          status: "failed"
         }));
     },
     submitProfile(formData) {
       const url = "/addCandidates";
-      return api.post(url, formData).catch((e) => ({
+      return api.post(url, formData).catch(e => ({
         error: e,
-        status: "failed",
+        status: "failed"
       }));
-    },
-  },
+    }
+  }
 };

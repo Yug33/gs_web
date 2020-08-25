@@ -9,8 +9,8 @@ import NavBar from "@/components/Navbar.vue";
 
 export default {
   components: {
-    NavBar,
-  },
+    NavBar
+  }
 };
 </script>
 <style lang="scss">

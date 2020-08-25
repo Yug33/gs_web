@@ -71,8 +71,8 @@ export default {
         first_name: "",
         last_name: "",
         email: "",
-        password: "",
-      },
+        password: ""
+      }
     };
   },
   methods: {
@@ -87,14 +87,14 @@ export default {
           this.$router.push({
             path: "/login",
             query: {
-              isVerify: true,
-            },
+              isVerify: true
+            }
           });
         }
       } catch (error) {
         console.log(error, error.data);
       }
-    },
-  },
+    }
+  }
 };
 </script>

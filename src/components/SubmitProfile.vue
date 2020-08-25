@@ -2,10 +2,17 @@
   <div class="row vertical-height justify-content-center align-items-center">
     <div class="col-sm-12 col-md-6 col-lg-5 shadow-lg p-5">
       <div class="d-flex flex-column">
-        <div class="text-center font-weight-bolder font-size-large">Upload profile</div>
+        <div class="text-center font-weight-bolder font-size-large">
+          Upload profile
+        </div>
         <hr />
         <div>
-          <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>{{ errorMessage }}</b-alert>
+          <b-alert
+            v-model="showDismissibleAlert"
+            variant="danger"
+            dismissible
+            >{{ errorMessage }}</b-alert
+          >
         </div>
         <b-form @submit="onSubmit">
           <b-form-input
@@ -60,9 +67,12 @@
             v-model="form.do_you_like_working"
             name="check-button"
             switch
-          >Do you link working ?</b-form-checkbox>
+            >Do you link working ?</b-form-checkbox
+          >
 
-          <b-button class="m-2 float-right" type="submit" variant="primary">Submit</b-button>
+          <b-button class="m-2 float-right" type="submit" variant="primary"
+            >Submit</b-button
+          >
         </b-form>
         <b-modal id="formStatusModal" hide-footer>
           <div class="d-block text-center">
@@ -72,7 +82,8 @@
             class="m-2 float-right"
             variant="primary"
             @click="$bvModal.hide('formStatusModal')"
-          >Okay</b-button>
+            >Okay</b-button
+          >
         </b-modal>
       </div>
     </div>

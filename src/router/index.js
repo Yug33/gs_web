@@ -12,27 +12,27 @@ const routes = [
     path: "/home/:type",
     name: "Candidates",
     component: Candidates,
-    beforeEnter: requireAuth,
+    beforeEnter: requireAuth
   },
   {
     path: "/",
-    redirect: "/home/all",
+    redirect: "/home/all"
   },
   {
     path: "/signup",
     name: "Signup",
-    component: Signup,
+    component: Signup
   },
   {
     path: "/login",
     name: "Login",
     component: Login,
     props: true,
-    beforeEnter: noLoginPage,
+    beforeEnter: noLoginPage
   },
   {
     path: "*",
-    redirect: "home/all",
+    redirect: "home/all"
   },
   {
     path: "/about",
@@ -42,24 +42,24 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
-    beforeEnter: requireAuth,
+    beforeEnter: requireAuth
   },
   {
     path: "/verify",
     name: "Verify",
     component: Verify,
-    props: true,
+    props: true
   },
   {
     path: "/submit-profile",
     name: "SubmitProfile",
-    component: () => import("../views/SubmitProfile.vue"),
-  },
+    component: () => import("../views/SubmitProfile.vue")
+  }
 ];
 
 const router = new VueRouter({
   mode: "history",
-  routes,
+  routes
 });
 
 export default router;

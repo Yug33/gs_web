@@ -5,7 +5,12 @@
         <div class="text-center display-4 font-weight-bolder">Login</div>
         <hr />
         <div>
-          <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>{{ errorMessage }}</b-alert>
+          <b-alert
+            v-model="showDismissibleAlert"
+            variant="danger"
+            dismissible
+            >{{ errorMessage }}</b-alert
+          >
         </div>
         <b-form @submit="onSubmit">
           <b-form-input
@@ -26,10 +31,14 @@
             placeholder="Password"
           ></b-form-input>
 
-          <b-button class="m-2 float-right" type="submit" variant="primary">Login</b-button>
+          <b-button class="m-2 float-right" type="submit" variant="primary"
+            >Login</b-button
+          >
         </b-form>
 
-        <router-link to="/signup" class="text-center mt-4">Create an account</router-link>
+        <router-link to="/signup" class="text-center mt-4"
+          >Create an account</router-link
+        >
       </div>
     </div>
   </div>

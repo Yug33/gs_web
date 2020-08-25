@@ -10,7 +10,7 @@ import SubmitProfile from "@/components/SubmitProfile.vue";
 
 export default {
   components: {
-    SubmitProfile,
-  },
+    SubmitProfile
+  }
 };
 </script>

@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       verificationMessage: "Please wait we are verifing your mail",
-      isEmailVerified: true,
+      isEmailVerified: true
     };
   },
   methods: {
@@ -34,10 +34,10 @@ export default {
         this.verificationMessage = "Your email is verified ✅";
         this.isEmailVerified = true;
       }
-    },
+    }
   },
   async mounted() {
     this.checkVerify();
-  },
+  }
 };
 </script>

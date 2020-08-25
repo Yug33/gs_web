@@ -1,12 +1,20 @@
 <template>
   <b-card header="Candidate" header-tag="header" :title="getFullName">
-    <b-card-text>{{candidate.email}}</b-card-text>
+    <b-card-text>{{ candidate.email }}</b-card-text>
     <b-button
       @click="$root.$emit('bv::show::modal', candidate.id, $event.target)"
       variant="primary"
-    >More details</b-button>
+      >More details</b-button
+    >
     <!-- MODAL -->
-    <b-modal :id="candidate.id" centered title="Candidate" scrollable no-stacking @ok="handleOk">
+    <b-modal
+      :id="candidate.id"
+      centered
+      title="Candidate"
+      scrollable
+      no-stacking
+      @ok="handleOk"
+    >
       <div class="m-5">
         <div class="row about-list">
           <div class="col-6">
@@ -34,25 +42,29 @@
           </div>
           <div class="col-6">
             <div class="media">
-              <label>{{getFullName}}</label>
+              <label>{{ getFullName }}</label>
             </div>
             <div class="media">
-              <label>{{candidate.email}}</label>
+              <label>{{ candidate.email }}</label>
             </div>
             <div class="media">
-              <label>{{candidate.web_address}}</label>
+              <label>{{ candidate.web_address }}</label>
             </div>
             <div class="media">
-              <label>{{candidate.do_you_like_working ? "Yes":"No"}}</label>
+              <label>{{ candidate.do_you_like_working ? "Yes" : "No" }}</label>
             </div>
             <div class="media">
               <label>
-                <a :href="candidate.cover_letter" target="_blank">Click here to download</a>
+                <a :href="candidate.cover_letter" target="_blank"
+                  >Click here to download</a
+                >
               </label>
             </div>
             <div class="media">
               <label>
-                <a :href="candidate.resume" target="_blank">Click here to download</a>
+                <a :href="candidate.resume" target="_blank"
+                  >Click here to download</a
+                >
               </label>
             </div>
             <div class="media">

@@ -2,14 +2,27 @@
   <div class="container-fluid mt-3">
     <div>
       <b-nav tabs class="mb-4">
-        <b-nav-item to="/home/all" exact exact-active-class="active" @click="watchUrl">All</b-nav-item>
-        <b-nav-item to="/home/my" exact exact-active-class="active" @click="watchUrl">My ratings</b-nav-item>
+        <b-nav-item
+          to="/home/all"
+          exact
+          exact-active-class="active"
+          @click="watchUrl"
+          >All</b-nav-item
+        >
+        <b-nav-item
+          to="/home/my"
+          exact
+          exact-active-class="active"
+          @click="watchUrl"
+          >My ratings</b-nav-item
+        >
         <b-nav-item
           to="/home/fiveStar"
           exact
           exact-active-class="active"
           @click="watchUrl"
-        >Five star profiles</b-nav-item>
+          >Five star profiles</b-nav-item
+        >
       </b-nav>
     </div>
     <b-card-group columns class="mb-4">
@@ -17,8 +30,14 @@
         <UserCard :candidate="candidate" />
       </div>
     </b-card-group>
-    <div class="bottom-stick d-flex justify-content-center align-items-center w-100">
-      <b-pagination v-model="currentPage" pills :total-rows="rows"></b-pagination>
+    <div
+      class="bottom-stick d-flex justify-content-center align-items-center w-100"
+    >
+      <b-pagination
+        v-model="currentPage"
+        pills
+        :total-rows="rows"
+      ></b-pagination>
     </div>
   </div>
 </template>
