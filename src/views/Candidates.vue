@@ -51,6 +51,10 @@ export default {
       );
       this.candidates = response.data;
     },
+    async getFiveStarCandidates() {
+      const response = await Api.methods.getFiveStarCandidates();
+      this.candidates = response.data;
+    },
     async getCandidatesCount() {
       const response = await Api.methods.getCandidatesCount();
       const totalCount = Number(response.data.count);
@@ -74,8 +78,12 @@ export default {
         case "my":
           this.getMyRatedCandidates();
           break;
-
+        case "fiveStar":
+          this.getFiveStarCandidates();
+          break;
         default:
+          this.getCandidates();
+          this.getCandidatesCount();
           break;
       }
     }

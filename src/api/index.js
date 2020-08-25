@@ -82,6 +82,14 @@ export default {
         },
       });
     },
+    getFiveStarCandidates() {
+      const url = "/getFiveStarCandidates";
+      return api.get(url, {
+        headers: {
+          Authorization: localStorage.getItem("accessToken"),
+        },
+      });
+    },
     verifyEmail(token) {
       const url = "/verifyMail";
       return api.post(url, { accessToken: token }).catch((e) => ({

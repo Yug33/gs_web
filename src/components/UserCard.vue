@@ -76,7 +76,7 @@ export default {
   },
   data() {
     return {
-      rating: 0
+      rating: this.candidate.ratings ? this.candidate.ratings : 0
     };
   },
   methods: {

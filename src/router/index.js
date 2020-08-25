@@ -9,11 +9,14 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    alias: "/",
     path: "/home/:type",
     name: "Candidates",
     component: Candidates,
     beforeEnter: requireAuth,
+  },
+  {
+    path: "/",
+    redirect: "/home/all",
   },
   {
     path: "/signup",
